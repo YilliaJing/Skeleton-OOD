@@ -1,0 +1,51 @@
+num_worker: 8
+work_dir: ./work_dir/ntu_hdgcn/cross-label/joint_CoM_seen_ashp-mlp-loss-56/
+# 65
+# feeder
+feeder: feeders.feeder_ntu.Feeder
+train_feeder_args:
+  data_path: /home/h3c/xujing/data/ntu/NTU60_train_56.npz
+  split: train
+  debug: False
+  random_choose: False
+  random_shift: False
+  random_move: False
+  window_size: 64
+  normalization: False
+  random_rot: True
+  p_interval: [0.5, 1]
+  bone: False
+
+test_feeder_args:
+  data_path: /home/h3c/xujing/data/ntu/NTU60_seen_test_56.npz
+  split: test
+  window_size: 64
+  p_interval: [0.95]
+  bone: False
+  debug: False
+
+# model
+model: model.ActionOOD.Model
+model_args:
+  num_class: 56
+  num_point: 25
+  num_person: 2
+  graph: graph.ntu_rgb_d_hierarchy.Graph
+  graph_args:
+    labeling_mode: 'spatial'
+    CoM: 21
+  dice: False
+  method: ours
+
+#optim
+weight_decay: 0.0004
+base_lr: 0.1
+warm_up_epoch: 5
+loss_type: Energy  # 修改loss：CE基础上增加energy score作为优化目标
+
+# training
+device: [2]
+batch_size: 64
+test_batch_size: 64
+num_epoch: 100
+nesterov: True

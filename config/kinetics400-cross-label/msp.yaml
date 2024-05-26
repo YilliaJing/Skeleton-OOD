@@ -1,0 +1,51 @@
+num_worker: 8
+work_dir: ./work_dir/kinetics400-hdgcn/cross-label/msp/
+
+# feeder
+feeder: feeders.feeder_kinetics.Feeder
+train_feeder_args:
+  data_path: /home/ubuntu/xj/data/kinetics400/Kinetics_train_368.npz
+  split: train
+  debug: False
+  random_choose: False
+  random_shift: False
+  random_move: False
+  window_size: 64
+  normalization: False
+  random_rot: True
+  p_interval: [0.5, 1]
+  bone: True
+
+test_feeder_args:
+  data_path: /home/ubuntu/xj/data/kinetics400/Kinetics_seen_test_368.npz
+  split: test
+  window_size: 64
+  p_interval: [0.95]
+  bone: True
+  debug: False
+
+# model
+model: model.ActionOOD.Model
+model_args:
+  num_class: 368
+  num_point: 18
+  num_person: 2
+  graph: graph.kinetics.Graph
+  graph_args:
+    labeling_mode: 'spatial'
+    CoM: 1  # or 2
+
+#optim
+weight_decay: 0.0004
+base_lr: 0.1
+lr_ratio: 0.01
+warm_up_epoch: 5
+loss_type: CE  # 修改loss：CE基础上增加energy score作为优化目标
+dist_type: MSP
+
+# training
+device: [1]
+batch_size: 128
+test_batch_size: 128
+num_epoch: 150
+nesterov: True

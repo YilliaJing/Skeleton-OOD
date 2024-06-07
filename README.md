@@ -67,6 +67,12 @@ Human action recognition is a crucial task in computer vision systems. However, 
  python kinetics-unseen.py
 ```
 
+- generate mix-test dataset for NTU and Kinetics dataset:
+```
+ cd ./data/process
+ python cat_seen_unseen.py
+```
+
 # Training & Testing
 ### Training
     python main.py -config config/nturgbd-cross-label/joint_com_seen_ashp-mlp-loss-56.yaml

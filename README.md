@@ -1,6 +1,6 @@
 # Action-OOD
 Official implement of Action-OOD.  
-[arxiv paper]()
+[arxiv paper](https://arxiv.org/abs/2405.20633)
 
 ## Dataset(coming soon)
 

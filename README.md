@@ -1,5 +1,5 @@
-# Action-OOD
-Official implementation of Action-OOD: An End-to-End Skeleton-Based Model for Robust Out-of-Distribution Human Action Detection
+# Skeleton-OOD
+Official implementation of Skeleton-OOD: An End-to-End Skeleton-Based Model for Robust Out-of-Distribution Human Action Detection
 .  
 [Arxiv paper](https://arxiv.org/abs/2405.20633)
 
